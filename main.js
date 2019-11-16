@@ -124,27 +124,34 @@ class mainScene extends Phaser.Scene {
     this.anims.create({ 
       key: 'fly', 
       frames: this.anims
-      .generateFrameNumbers('food', [0]), 
+      .generateFrameNumbers('food', [0, 1, 2]), 
       frameRate: 5, 
       repeat: -1 });
-    var cannon = this.add.image(64, 448, 'food');
-    var chick = this.physics.add.sprite(cannon.x, cannon.y, 'food').setScale(2);
+    
     var gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
     var line = new Phaser.Geom.Line();
     var angle = 0;
-
-    chick.disableBody(true, true);
+    var _this = this;
+    class Food {
+      constructor(){
+        this.cannon = _this.add.image(64, 448, 'food');
+        this.chick = _this.physics.add.sprite(this.cannon.x, this.cannon.y, 'food').setScale(2);
+        this.chick.disableBody(true, true);
+      }
+    }
 
     this.input.on('pointermove', function (pointer) {
+        let {cannon} = new Food();
         angle = Phaser.Math.Angle.BetweenPoints(cannon, pointer);
         Phaser.Geom.Line.SetToAngle(line, cannon.x, cannon.y, angle, 128);
         gfx.clear().strokeLineShape(line);
     }, this);
 
     this.input.on('pointerup', function () {
+        let {cannon, chick} = new Food();
         chick.enableBody(true, cannon.x, cannon.y, true, true);
         chick.play('fly');
-        this.physics.velocityFromRotation(angle, 600, chick.body.velocity);
+        this.physics.velocityFromRotation(angle, 400, chick.body.velocity);
     }, this);
 
 
