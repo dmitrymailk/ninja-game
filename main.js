@@ -12,7 +12,7 @@ let gameOptions = {
     default: 'arcade',
     arcade: {
         debug: false,
-        gravity: { y: 300 }
+        gravity: { y: 200 }
     }
 },
 };
@@ -125,13 +125,14 @@ class mainScene extends Phaser.Scene {
       key: 'fly', 
       frames: this.anims
       .generateFrameNumbers('food', [0, 1, 2]), 
-      frameRate: 5, 
-      repeat: -1 });
+      frameRate: 0, 
+      repeat: 0 });
     
     var gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
     var line = new Phaser.Geom.Line();
     var angle = 0;
     var _this = this;
+
     class Food {
       constructor(){
         this.cannon = _this.add.image(64, 448, 'food');
