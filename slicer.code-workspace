@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "assets",
+      "path": "D:\\Projects\\JS\\Games\\grid-game\\src\\assets"
+    },
+    {
+      "name": "typings",
+      "path": "D:\\Projects\\JS\\Games\\grid-game\\typings"
+    },
+    {
+      "name": "slicer",
+      "path": "."
+    },
+    {
+      "name": "lib",
+      "path": "D:\\Projects\\JS\\Games\\grid-game\\src\\lib"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "slicer"
+  }
+}
